@@ -1,0 +1,259 @@
+/* PoB Trade Helper — Side Panel */
+
+:root {
+  --bg: #1a1a1a;
+  --bg-card: #242424;
+  --bg-card-hover: #2a2a2a;
+  --border: #333;
+  --text: #d0d0d0;
+  --text-muted: #666;
+  --accent: #c8a96e;      /* PoE gold */
+  --positive: #4caf50;
+  --negative: #e53935;
+  --header-h: 40px;
+  --footer-h: 28px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#app {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding: 0 10px;
+  background: #111;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.header__title {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* ---- States ---- */
+.state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.state__message { color: var(--text-muted); }
+.state__hint    { color: var(--text-muted); font-size: 11px; }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin: 8px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- Build card ---- */
+.build-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.build-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.build-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ---- Stat grid ---- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 8px;
+  margin-bottom: 8px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.stat-row__label { color: var(--text-muted); }
+.stat-row__value { font-weight: 600; }
+
+/* ---- League bar ---- */
+.league-bar {
+  margin: 0 8px 4px;
+  padding: 4px 8px;
+  background: #1e1e1e;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ---- Delta grid (simulate result) ---- */
+.delta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+.delta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.delta-row__label { color: var(--text-muted); }
+
+.delta-row__value--pos { color: var(--positive); font-weight: 600; }
+.delta-row__value--neg { color: var(--negative); font-weight: 600; }
+.delta-row__value--neu { color: var(--text); }
+
+/* ---- Upgrade list ---- */
+.upgrade-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upgrade-item {
+  background: #1e1e1e;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 6px 8px;
+}
+
+.upgrade-item__slot {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.upgrade-item__current {
+  color: var(--text-muted);
+  font-size: 10px;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upgrade-item__delta {
+  font-size: 11px;
+  color: var(--positive);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: #2c2c2c;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 11px;
+  transition: background 0.15s;
+}
+
+.btn:hover { background: #383838; }
+
+.btn--primary {
+  background: var(--accent);
+  color: #111;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.btn--primary:hover { background: #d4b87e; }
+
+.btn--small { padding: 2px 7px; font-size: 10px; }
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-muted);
+}
+
+.btn--ghost:hover { color: var(--text); background: #2a2a2a; }
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 13px;
+  line-height: 1;
+  border-radius: 3px;
+  transition: color 0.15s;
+}
+
+.icon-btn:hover { color: var(--text); }
+
+/* ---- Misc ---- */
+.hidden  { display: none !important; }
+.muted   { color: var(--text-muted); font-size: 11px; }
+
+/* ---- Footer ---- */
+.footer {
+  height: var(--footer-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  font-size: 9px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  flex-shrink: 0;
+}

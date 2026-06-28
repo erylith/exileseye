@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoB Trade Helper — Settings</title>
+  <link rel="stylesheet" href="../dist/options.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-title">PoB Trade Helper — Settings</h1>
+
+    <form id="settings-form" class="form">
+
+      <div class="form-group">
+        <label class="form-label" for="server-url">
+          PoB Server URL
+          <span class="form-hint">The URL of your running PoB unified server</span>
+        </label>
+        <input
+          id="server-url"
+          class="form-input"
+          type="url"
+          placeholder="https://your-server.example.com"
+          autocomplete="off"
+          spellcheck="false"
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="api-secret">
+          API Secret
+          <span class="form-hint">Bearer token set with --api-secret when starting the server</span>
+        </label>
+        <input
+          id="api-secret"
+          class="form-input"
+          type="password"
+          placeholder="Leave blank if server has no auth"
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn--primary" id="btn-save">Save</button>
+        <button type="button" class="btn" id="btn-test">Test connection</button>
+      </div>
+
+    </form>
+
+    <div id="status" class="status hidden"></div>
+
+    <div class="info-box">
+      <h2 class="info-title">Starting the server</h2>
+      <pre class="code">uv run python3 api/run_mcp.py \
+  --host 0.0.0.0 \
+  --port 8080 \
+  --api-secret YOUR_TOKEN</pre>
+      <p class="info-text">
+        The server must be reachable from your browser. If it's on a remote machine,
+        make sure it's behind HTTPS (nginx + Let's Encrypt, Caddy, or Tailscale HTTPS).
+      </p>
+    </div>
+
+    <p class="disclaimer">
+      This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
+    </p>
+  </div>
+
+  <script src="../dist/options.js"></script>
+</body>
+</html>

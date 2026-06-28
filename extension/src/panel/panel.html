@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoB Trade Helper</title>
+  <link rel="stylesheet" href="../dist/panel.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Header -->
+    <header class="header">
+      <span class="header__title">PoB Trade Helper</span>
+      <button id="btn-settings" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+    </header>
+
+    <!-- Not configured state -->
+    <section id="state-unconfigured" class="state hidden">
+      <p class="state__message">Server URL not configured.</p>
+      <button id="btn-open-options" class="btn btn--primary">Open Settings</button>
+    </section>
+
+    <!-- Connecting state -->
+    <section id="state-connecting" class="state hidden">
+      <p class="state__message">Connecting to PoB server…</p>
+    </section>
+
+    <!-- No build loaded -->
+    <section id="state-no-build" class="state hidden">
+      <p class="state__message">No build loaded in PoB.</p>
+      <p class="state__hint">Load a build via Claude Desktop or the REST API, then refresh.</p>
+      <button id="btn-refresh" class="btn">Refresh</button>
+    </section>
+
+    <!-- Main content -->
+    <main id="state-main" class="hidden">
+
+      <!-- Build card -->
+      <section class="card">
+        <div class="build-header">
+          <span id="build-name" class="build-name"></span>
+          <span id="build-meta" class="build-meta"></span>
+        </div>
+        <div id="build-stats" class="stat-grid"></div>
+        <button id="btn-refresh-build" class="btn btn--small">↺ Refresh</button>
+      </section>
+
+      <!-- League indicator -->
+      <div id="league-bar" class="league-bar hidden">
+        <span id="league-label"></span>
+      </div>
+
+      <!-- Simulate result -->
+      <section id="simulate-section" class="card hidden">
+        <h3 class="section-title">Simulation: <span id="sim-item-name"></span></h3>
+        <div id="sim-delta" class="delta-grid"></div>
+        <button id="btn-clear-sim" class="btn btn--small btn--ghost">✕ Clear</button>
+      </section>
+
+      <!-- Upgrade opportunities -->
+      <section class="card">
+        <h3 class="section-title">
+          Upgrade slots
+          <button id="btn-refresh-upgrades" class="icon-btn" title="Recalculate">↺</button>
+        </h3>
+        <div id="upgrade-list" class="upgrade-list">
+          <p class="muted">Click ↺ to calculate upgrade opportunities.</p>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <footer class="footer">
+    This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
+  </footer>
+
+  <script src="../dist/panel.js"></script>
+</body>
+</html>
